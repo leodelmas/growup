@@ -21,7 +21,7 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'session_new', methods: ['GET','POST'])]
+    #[Route('/new', name: 'session_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $session = new Session();
@@ -42,15 +42,7 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'session_show', methods: ['GET'])]
-    public function show(Session $session): Response
-    {
-        return $this->render('session/show.html.twig', [
-            'session' => $session,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'session_edit', methods: ['GET','POST'])]
+    #[Route('/{id}/edit', name: 'session_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Session $session): Response
     {
         $form = $this->createForm(SessionType::class, $session);
@@ -71,7 +63,7 @@ class SessionController extends AbstractController
     #[Route('/{id}', name: 'session_delete', methods: ['POST'])]
     public function delete(Request $request, Session $session): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$session->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $session->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($session);
             $entityManager->flush();

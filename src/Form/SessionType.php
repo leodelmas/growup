@@ -12,8 +12,9 @@ class SessionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('title')
             ->add('date')
-        ;
+            ->add('mood');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

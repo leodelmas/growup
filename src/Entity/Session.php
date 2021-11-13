@@ -30,6 +30,16 @@ class Session
      */
     private $exercises;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $mood;
+
     public function __construct()
     {
         $this->exercises = new ArrayCollection();
@@ -78,6 +88,30 @@ class Session
                 $exercise->setSession(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getMood(): ?int
+    {
+        return $this->mood;
+    }
+
+    public function setMood(int $mood): self
+    {
+        $this->mood = $mood;
 
         return $this;
     }
