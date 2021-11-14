@@ -4,8 +4,5 @@
 
 {% block body %}
     <h1>Create new Exercise</h1>
-
-    {{ include('exercise/_form.html.twig') }}
-
-    <a href="{{ path('exercise_index') }}">back to list</a>
+    {{ include('session/exercise/_form.html.twig') }}
 {% endblock %}

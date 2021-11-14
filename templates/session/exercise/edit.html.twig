@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Exercise{% endblock %}
+
+{% block body %}
+    <h1>Edit Exercise</h1>
+    {{ include('session/exercise/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('session/exercise/_delete_form.html.twig') }}
+{% endblock %}

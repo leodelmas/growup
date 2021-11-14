@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Exercise;
 use App\Entity\Session;
+use App\Form\ExerciseType;
 use App\Form\SessionType;
 use App\Repository\SessionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -70,5 +72,29 @@ class SessionController extends AbstractController
         }
 
         return $this->redirectToRoute('session_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/exercice/new', name: 'exercise_new', methods: ['GET', 'POST'])]
+    public function newExercice(Request $request, Session $session): Response
+    {
+        $exercise = new Exercise();
+        $exercise->setSession($session);
+        $form = $this->createForm(ExerciseType::class, $exercise);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($exercise);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('session_edit', [
+                'id' => $session->getId()
+            ], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('session/exercise/new.html.twig', [
+            'exercise' => $exercise,
+            'form' => $form,
+        ]);
     }
 }

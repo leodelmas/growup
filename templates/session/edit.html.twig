@@ -1,20 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Session{% endblock %}
+{% block title %}Edit Session
+{% endblock %}
 
 {% block body %}
+	<div class="w-full">
+		<div class="flex items-center justify-between mb-4 mx-4">
+			<a class="text-sm font-light text-gray-500 dark:text-gray-400 hover:text-gray-900" href="{{ path('session_index') }}">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+				</svg>
+			</a>
+			<div class="flex items-center justify-between space-x-2">
+				{{ include('session/_delete_form.html.twig') }}
+				<a class="shadow-lg p-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-900" href="{{ path('session_new') }}">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
 	<div class="w-full sm:w-1/2">
 		<div class="mb-4 mx-0 sm:ml-4 xl:mr-4">
 			<div class="shadow-lg rounded-2xl px-8 py-4 bg-white dark:bg-gray-700 w-full">
-				<div class="flex items-center justify-between">
-					<a class="text-sm font-light text-gray-600 dark:text-gray-400" href="{{ path('session_index') }}">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
-						</svg>
-					</a>
-					{{ include('session/_delete_form.html.twig') }}
-				</div>
 				{{ include('session/_form.html.twig', {'button_label': 'Update'}) }}
+			</div>
+		</div>
+	</div>
+	<div class="w-full sm:w-1/2">
+		<div class="mb-4 mx-0 sm:ml-4 xl:mr-4">
+			<div class="shadow-lg rounded-2xl px-8 py-4 bg-white dark:bg-gray-700 w-full">
+				{% for exercise in session.exercises %}
+					<tr>
+						<td>{{ exercise.id }}</td>
+						<td>{{ exercise.name }}</td>
+						<td>
+							<a href="{{ path('exercise_edit', {'id': exercise.id}) }}">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">no records found</td>
+					</tr>
+				{% endfor %}
+				<a href="{{ path('exercise_new', {'id': session.id}) }}">Create new</a>
 			</div>
 		</div>
 	</div>
