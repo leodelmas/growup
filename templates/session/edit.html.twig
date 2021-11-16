@@ -23,22 +23,42 @@
 	</div>
 	<div class="w-full sm:w-1/2">
 		<div class="mb-4 mx-0 sm:ml-4 xl:mr-4">
-			<div class="shadow-lg rounded-2xl px-8 py-4 bg-white dark:bg-gray-700 w-full">
-				{% for exercise in session.exercises %}
-					<tr>
-						<td>{{ exercise.id }}</td>
-						<td>{{ exercise.name }}</td>
-						<td>
-							<a href="{{ path('exercise_edit', {'id': exercise.id}) }}">edit</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="3">no records found</td>
-					</tr>
-				{% endfor %}
-				<a href="{{ path('exercise_new', {'id': session.id}) }}">Create new</a>
+			<div class="shadow-lg rounded-2xl pb-4 bg-white dark:bg-gray-700 w-full">
+				<ul class="mb-3">
+					{% set number = 1 %}
+					{% for exercise in session.exercises %}
+						<li class="flex items-center text-gray-600 dark:text-gray-200 justify-between py-3 border-b-2 border-gray-100 dark:border-gray-800">
+							<div class="flex items-center justify-start text-sm">
+								<span class="mx-8 font-bold text-indigo-500">
+									{{ (number < 10 ? '0') ~ number }}
+								</span>
+								<span class="text-base">
+									{{ exercise.name }}
+								</span>
+							</div>
+							<a class="mx-8 text-sm font-bold text-indigo-500 transition-colors duration-200 transform cursor-pointer hover:text-indigo-900" href="{{ path('exercise_edit', {'id': exercise.id}) }}">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+								</svg>
+							</a>
+						</li>
+						{% set number = number + 1 %}
+					{% else %}
+						<li class="text-gray-600 dark:text-gray-200 py-3 border-b-2 border-gray-100 dark:border-gray-800">
+							<span class="ml-8">
+								No exercise recorded
+							</span>
+						</li>
+					{% endfor %}
+				</ul>
+				<div class="flex flex-row ml-8 mx-0">
+					<a class="shadow-lg p-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-900" href="/session/new">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+						</svg>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}
