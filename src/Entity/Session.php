@@ -20,11 +20,6 @@ class Session
     private $id;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
-
-    /**
      * @ORM\OneToMany(targetEntity=Exercise::class, mappedBy="session")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -40,6 +35,16 @@ class Session
      */
     private $mood;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $start;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $end;
+
     public function __construct()
     {
         $this->exercises = new ArrayCollection();
@@ -48,18 +53,6 @@ class Session
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
     }
 
     /**
@@ -112,6 +105,30 @@ class Session
     public function setMood(int $mood): self
     {
         $this->mood = $mood;
+
+        return $this;
+    }
+
+    public function getStart(): ?\DateTimeInterface
+    {
+        return $this->start;
+    }
+
+    public function setStart(\DateTimeInterface $start): self
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    public function getEnd(): ?\DateTimeInterface
+    {
+        return $this->end;
+    }
+
+    public function setEnd(\DateTimeInterface $end): self
+    {
+        $this->end = $end;
 
         return $this;
     }
