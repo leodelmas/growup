@@ -20,8 +20,7 @@ class Session
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Exercise::class, mappedBy="session")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity=Exercise::class, mappedBy="session", cascade={"persist","remove"})
      */
     private $exercises;
 
@@ -44,6 +43,12 @@ class Session
      * @ORM\Column(type="datetime")
      */
     private $end;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sessions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -129,6 +134,18 @@ class Session
     public function setEnd(\DateTimeInterface $end): self
     {
         $this->end = $end;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

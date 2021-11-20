@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 #[Route('/session')]
 class SessionController extends AbstractController
@@ -24,13 +25,14 @@ class SessionController extends AbstractController
     }
 
     #[Route('/new', name: 'session_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, Security $security): Response
     {
         $session = new Session();
         $form = $this->createForm(SessionType::class, $session);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $session->setUser($security->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($session);
             $entityManager->flush();
