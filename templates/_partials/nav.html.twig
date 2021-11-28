@@ -1,0 +1,35 @@
+{% set current_route = app.request.get('_route') %}
+<nav class="mt-6">
+	<div>
+		<a class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-indigo-500 {% if current_route == 'dashboard_index' %}text-indigo-500{% endif %}" href="{{ path('dashboard_index') }}">
+			<span class="text-left">
+				<svg width="20" height="20" fill="currentColor" viewbox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z"></path>
+				</svg>
+			</span>
+			<span class="mx-4 text-sm font-normal">
+				Dashboard
+			</span>
+		</a>
+		<a class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-indigo-500 {% if current_route == 'session_index' %}text-indigo-500{% endif %}" href="{{ path('session_index') }}">
+			<span class="text-left">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+				</svg>
+			</span>
+			<span class="mx-4 text-sm font-normal">
+				My sessions
+			</span>
+		</a>
+		<a class="w-full font-thin uppercase text-gray-500 dark:text-gray-200 flex items-center p-4 my-2 transition-colors duration-200 justify-start hover:text-indigo-500 {% if current_route == 'admin_user_index' %}text-indigo-500{% endif %}" href="{{ path('admin_user_index') }}">
+			<span class="text-left">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+				</svg>
+			</span>
+			<span class="mx-4 text-sm font-normal">
+				Users
+			</span>
+		</a>
+	</div>
+</nav>

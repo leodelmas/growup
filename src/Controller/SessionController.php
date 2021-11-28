@@ -17,10 +17,10 @@ use Symfony\Component\Security\Core\Security;
 class SessionController extends AbstractController
 {
     #[Route('/', name: 'session_index', methods: ['GET'])]
-    public function index(SessionRepository $sessionRepository): Response
+    public function index(SessionRepository $sessionRepository, Security $security): Response
     {
         return $this->render('session/index.html.twig', [
-            'sessions' => $sessionRepository->findAll(),
+            'sessions' => $sessionRepository->findBy(['user' => $security->getUser()]),
         ]);
     }
 
