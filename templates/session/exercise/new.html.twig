@@ -3,6 +3,14 @@
 {% block title %}New Exercise{% endblock %}
 
 {% block body %}
-    <h1>Create new Exercise</h1>
-    {{ include('session/exercise/_form.html.twig') }}
+	<div class="w-full">
+		<div class="flex items-center justify-between mb-4 mx-4">
+			<a class="text-sm font-light text-gray-500 dark:text-gray-400 hover:text-gray-900" href="{{ path('session_edit', {'id': exercise.session.id}) }}">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+				</svg>
+			</a>
+		</div>
+	</div>
+	{{ include('session/exercise/_form.html.twig') }}
 {% endblock %}

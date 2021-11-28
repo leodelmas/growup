@@ -1,4 +1,27 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="w-2/3">
+	<div class="mb-4 mx-0 sm:ml-4 xl:mr-4">
+		<div class="shadow-lg rounded-2xl px-8 py-4 bg-white dark:bg-gray-700 w-full">
+			{{ form_start(form) }}
+				{{ form_row(form.name) }}
+				<div class="flex items-center justify-between">
+					{{ form_label(form.series) }}
+					<button type="button" class="add_item_link text-indigo-500" data-collection-holder-class="series">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+						</svg>
+					</button>
+				</div>
+				<ul class="series mx-12 mt-4" data-index="{{ form.series|length > 0 ? form.series|last.vars.name + 1 : 0 }}" data-prototype="{{ include('session/exercise/series/_new_form.html.twig')|e('html_attr') }}">
+					{% for series in form.series %}
+						{{ include('session/exercise/series/_edit_form.html.twig') }}
+					{% endfor %}
+				</ul>
+				<button class="shadow-lg p-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-900">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+					</svg>
+				</button>
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>

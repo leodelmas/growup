@@ -10,3 +10,13 @@ import './scss/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+// TODO : Découpage JS
+const el = document.querySelector("button.add_item_link");
+el.addEventListener("click", function(e) {
+    const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+    const item = document.createElement('li');
+    item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
+    collectionHolder.appendChild(item);
+    collectionHolder.dataset.index ++;
+}, false);

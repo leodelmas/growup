@@ -52,7 +52,7 @@
 					{% endfor %}
 				</ul>
 				<div class="flex flex-row ml-8 mx-0">
-					<a class="shadow-lg p-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-900" href="/session/new">
+					<a class="shadow-lg p-2 rounded-full bg-indigo-500 text-white hover:bg-indigo-900" href="{{ path('exercise_new', {'id': session.id}) }}">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
 						</svg>

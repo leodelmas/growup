@@ -13,9 +13,7 @@ class SeriesType extends AbstractType
     {
         $builder
             ->add('repetition')
-            ->add('weight')
-            ->add('exercise')
-        ;
+            ->add('weight');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

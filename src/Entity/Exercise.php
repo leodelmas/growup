@@ -31,7 +31,7 @@ class Exercise
     private $session;
 
     /**
-     * @ORM\OneToMany(targetEntity=Series::class, mappedBy="exercise", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Series::class, mappedBy="exercise", orphanRemoval=true, cascade={"persist","remove"})
      */
     private $series;
 
