@@ -1,0 +1,8 @@
+.range-wrap {
+    position: relative;
+    output {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

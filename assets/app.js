@@ -13,19 +13,23 @@ import './bootstrap';
 
 // TODO : Découpage JS
 const addItemLink = document.querySelector("button.add_item_link");
-addItemLink.addEventListener("click", function(e) {
-    const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
-    const item = document.createElement('li');
-    item.classList.add('flex', 'items-center', 'justify-between')
-    item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
-    collectionHolder.appendChild(item);
-    addTagFormDeleteLink(item)
-    collectionHolder.dataset.index ++;
-}, false);
+if(addItemLink) {
+    addItemLink.addEventListener("click", function(e) {
+        const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+        const item = document.createElement('li');
+        item.classList.add('flex', 'items-center', 'justify-between')
+        item.innerHTML = collectionHolder.dataset.prototype.replace(/__name__/g, collectionHolder.dataset.index);
+        collectionHolder.appendChild(item);
+        addTagFormDeleteLink(item)
+        collectionHolder.dataset.index ++;
+    }, false);
+}
 
-const seriesList = (document.querySelector('ul.series')).getElementsByTagName('li')
-for (let series of seriesList) {
-    addTagFormDeleteLink(series)
+const seriesList = document.querySelector('ul.series');
+if (seriesList) {
+    for (let series of seriesList.getElementsByTagName('li')) {
+        addTagFormDeleteLink(series)
+    }
 }
 
 function addTagFormDeleteLink (tagFormLi) {
@@ -39,4 +43,25 @@ function addTagFormDeleteLink (tagFormLi) {
         e.preventDefault()
         tagFormLi.remove();
     });
+}
+
+// Session mood field value
+const allRanges = document.querySelectorAll(".range-wrap");
+allRanges.forEach(wrap => {
+  const range = wrap.querySelector("input[type='range']");
+  const output = wrap.querySelector("output");
+
+  range.addEventListener("input", () => {
+    setOutput(range, output);
+  });
+  setOutput(range, output);
+});
+
+function setOutput(range, output) {
+  const val = range.value;
+  const min = range.min ? range.min : 0;
+  const max = range.max ? range.max : 100;
+  const newVal = Number(((val - min) * 100) / (max - min));
+  output.innerHTML = val;
+  output.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
