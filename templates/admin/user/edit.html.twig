@@ -1,13 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}Edit user{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
-
-    {{ include('admin/user/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('admin_user_index') }}">back to list</a>
-
-    {{ include('admin/user/_delete_form.html.twig') }}
+	<div class="w-full">
+		<div class="flex items-center justify-between mb-4 mx-4">
+			<a class="text-sm font-light text-gray-500 dark:text-gray-400 hover:text-gray-900" href="{{ path('admin_user_index') }}">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+				</svg>
+			</a>
+			{{ include('admin/user/_delete_form.html.twig') }}
+		</div>
+	</div>
+	<div class="w-full">
+		<div class="mb-4 mx-0 sm:ml-4 xl:mr-4">
+			<div class="shadow-lg rounded-2xl px-8 py-4 bg-white dark:bg-gray-700 w-full">
+				{{ include('admin/user/_form.html.twig') }}
+			</div>
+		</div>
+	</div>
 {% endblock %}
