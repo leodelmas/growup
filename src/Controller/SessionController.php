@@ -24,6 +24,14 @@ class SessionController extends AbstractController
         ]);
     }
 
+    #[Route('/all', name: 'session_all', methods: ['GET'])]
+    public function all(SessionRepository $sessionRepository, Security $security): Response
+    {
+        return $this->render('session/all.html.twig', [
+            'sessions' => $sessionRepository->findAll(),
+        ]);
+    }
+
     #[Route('/new', name: 'session_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Security $security): Response
     {
