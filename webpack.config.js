@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('exercise', './assets/pages/exercise.js')
+    .addEntry('session', './assets/pages/session.js')
     .addStyleEntry('tailwind', './assets/css/tailwind.css')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)

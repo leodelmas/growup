@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Session
+{% block title %}Edit session{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('session') }}
 {% endblock %}
 
 {% block body %}

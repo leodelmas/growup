@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Exercise{% endblock %}
+{% block title %}Edit exercise{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('exercise') }}
+{% endblock %}
 
 {% block body %}
     <div class="w-full">
@@ -14,9 +19,4 @@
 		</div>
 	</div>
 	{{ include('session/exercise/_form.html.twig') }} 
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-	{{ encore_entry_script_tags('exercise') }}
 {% endblock %}
