@@ -15,3 +15,8 @@
 	</div>
 	{{ include('session/exercise/_form.html.twig') }} 
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('exercise') }}
+{% endblock %}

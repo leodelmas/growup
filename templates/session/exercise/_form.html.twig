@@ -2,7 +2,10 @@
 	<div class="mb-4 mx-0 sm:ml-4 xl:mr-4">
 		<div class="shadow-lg rounded-2xl px-8 py-4 bg-white dark:bg-gray-700 w-full">
 			{{ form_start(form) }}
-				{{ form_row(form.name) }}
+				<div class="flex items-center justify-between">
+					{{ form_row(form.recorded_exercise) }}
+					{{ form_row(form.name) }}
+				</div>
 				<div class="flex items-center justify-between">
 					{{ form_label(form.series) }}
 					<button type="button" class="add_item_link text-indigo-500" data-collection-holder-class="series">
@@ -21,7 +24,8 @@
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
 					</svg>
 				</button>
-			{{ form_end(form) }}
+				{{ form_widget(form._token) }}
+			{{ form_end(form, {'render_rest': false}) }}
 		</div>
 	</div>
 </div>
