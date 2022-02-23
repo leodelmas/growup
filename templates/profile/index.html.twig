@@ -7,8 +7,14 @@
 	<div class="w-full">
 		<div class="mb-4 mx-0">
 			<div class="shadow-lg rounded-2xl px-8 py-4 bg-white dark:bg-gray-700 w-full">
-				
+				<h1 class="text-2xl font-bold text-gray-700 dark:text-white">{{ user.firstname }} {{ user.lastname }}</h1>
 			</div>
 		</div>
 	</div>
+
+	{% for session in lastSessions %}
+		<div class="w-full sm:w-1/2">
+			{% include 'session/single.html.twig' with {'edit': false} %}
+		</div>
+	{% endfor %}
 {% endblock %}

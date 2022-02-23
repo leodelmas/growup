@@ -184,6 +184,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->sessions;
     }
 
+    /**
+     * return a $number or 5 sessions
+     * @param int $number
+     * @return Collection|Session[]
+     */
+    public function getLastSessions(int $number = 5): array
+    {
+        return $this->sessions->slice(0, $number);
+    }
+
     public function addSession(Session $session): self
     {
         if (!$this->sessions->contains($session)) {
