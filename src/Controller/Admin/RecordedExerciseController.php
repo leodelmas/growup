@@ -8,6 +8,7 @@ use App\Repository\RecordedExerciseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/recorded-exercise')]
@@ -61,7 +62,7 @@ class RecordedExerciseController extends AbstractController
     }
 
     #[Route('/{id}', name: 'recorded_exercise_delete', methods: ['POST'])]
-    public function delete(Request $request, RecordedExercise $recordedExercise): Response
+    public function delete(Request $request, RecordedExercise $recordedExercise): RedirectResponse
     {
         if ($this->isCsrfTokenValid('delete' . $recordedExercise->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
