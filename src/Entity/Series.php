@@ -5,32 +5,22 @@ namespace App\Entity;
 use App\Repository\SeriesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=SeriesRepository::class)
- */
+#[ORM\Entity(repositoryClass: SeriesRepository::class)]
 class Series
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $repetition;
 
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
+    #[ORM\Column(type: 'float', nullable: true)]
     private $weight;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Exercise::class, inversedBy="series")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: Exercise::class, inversedBy: 'series')]
+    #[ORM\JoinColumn(nullable: false)]
     private $exercise;
 
     public function getId(): ?int

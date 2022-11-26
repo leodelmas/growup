@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Security;
 class ProfileController extends AbstractController
 {
     #[Route('/', name: 'profile_index', methods: ['GET'])]
-    public function index(User $user = null, Security $security): Response
+    public function index(Security $security, User $user = null): Response
     {
         /** @var User */
         $user = $security->getUser();

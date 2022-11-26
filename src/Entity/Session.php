@@ -7,47 +7,31 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=SessionRepository::class)
- */
+#[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Exercise::class, mappedBy="session", cascade={"persist","remove"})
-     */
+    #[ORM\OneToMany(targetEntity: Exercise::class, mappedBy: 'session', cascade: ['persist', 'remove'])]
     private $exercises;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: 'integer')]
     private $mood;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $start;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $end;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sessions")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'sessions')]
+    #[ORM\JoinColumn(nullable: false)]
     private $user;
 
     public function __construct()

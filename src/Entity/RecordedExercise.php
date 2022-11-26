@@ -5,21 +5,15 @@ namespace App\Entity;
 use App\Repository\RecordedExerciseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=RecordedExerciseRepository::class)
- */
+#[ORM\Entity(repositoryClass: RecordedExerciseRepository::class)]
 class RecordedExercise
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
     public function getId(): ?int
